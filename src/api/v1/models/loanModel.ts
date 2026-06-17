@@ -1,4 +1,5 @@
 export interface Loan {
+    id?: string;
     applicant: string;
     amount: number;
     status: string;
