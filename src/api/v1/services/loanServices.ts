@@ -31,8 +31,8 @@ export const getAllLoans = async (): Promise<Loan[]> => {
                 applicant: data.applicant,
                 amount: data.amount,
                 status: data.status,
-                createdAt: data.createdAt.toDate().toISOString(),
-                updatedAt: data.updatedAt.toDate().toISOString(),
+                createdAt: data.createdAt?.toDate?.().toISOString?.() ?? data.createdAt,
+                updatedAt: data.updatedAt?.toDate?.().toISOString?.() ?? data.updatedAt,
             } as Loan;
         });
 
@@ -75,6 +75,7 @@ export const getLoanById = async (id: string): Promise<Loan> => {
     if (!doc) {
         throw new Error(`Loan with ID ${id} not found`);
     }
+    const toIso = (value: any) =>  value?.toDate ? value?.toDate().toISOString()  : value;
 
     const data: DocumentData | undefined = doc.data();
     const loan: Loan = {
@@ -82,8 +83,8 @@ export const getLoanById = async (id: string): Promise<Loan> => {
         applicant: data?.applicant,
         amount: data?.amount,
         status: data?.status,
-        createdAt: data?.createdAt.toDate().toISOString(),
-        updatedAt: data?.updatedAt.toDate().toISOString(),
+        createdAt: toIso(data?.createdAt),
+        updatedAt: toIso(data?.updatedAt),
     } ;
 
     return structuredClone(loan);
