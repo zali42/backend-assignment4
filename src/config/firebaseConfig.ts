@@ -3,7 +3,7 @@ import { getFirestore, Firestore } from "firebase-admin/firestore";
 import { getAuth, Auth } from "firebase-admin/auth";
 
 // You'll n eed to replace this with your actual service account file name
-import serviceAccount from "../../module3demo2026-firebase-adminsdk-fbsvc-49a43b94e2.json";
+import serviceAccount from "../../loan-14cfd-firebase-adminsdk-fbsvc-991b701454.json";
 
 // initialize the Firebase app with our service account key
 initializeApp({
@@ -15,4 +15,5 @@ const db: Firestore = getFirestore();
 
 const auth: Auth = getAuth();
 
+console.log("PROJECT ID:", serviceAccount.project_id);
 export { auth, db };

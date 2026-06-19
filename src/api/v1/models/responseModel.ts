@@ -31,11 +31,12 @@ export const successResponse = <T>(
  * @param code - Optional error code for debugging
  * @returns
  */
-export const errorResponse = (
-    message: string,
-    code?: string
-): ApiResponse<null> => ({
-    status: "error",
-    error: message,
-    code,
+
+export const errorResponse = (message: string, code: string) => ({
+    success: false,
+    error: {
+        message,
+        code,
+    },
+    timestamp: new Date().toISOString(),
 });
